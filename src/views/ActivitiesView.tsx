@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import { Card } from '../components/common/Card';
 import { Badge } from '../components/common/Badge';
 import { Button } from '../components/common/Button';
-import { mockActivities, mockClasses } from '../data/mockData';
-import type { Activity, ClassCourse } from '../types';
+import { mockActivities } from '../data/mockData';
+import type { Activity } from '../types';
 import { 
   Clock, 
   UploadCloud, 
   FileText, 
   CheckCircle2, 
-  X, 
-  BookOpen
+  X
 } from 'lucide-react';
 
 interface ActivitiesViewProps {
@@ -21,7 +20,7 @@ interface ActivitiesViewProps {
 export const ActivitiesView: React.FC<ActivitiesViewProps> = ({
   initialSubjectId
 }) => {
-  const [selectedSubject, setSelectedSubject] = useState<string>(initialSubjectId || 'todas');
+  const [selectedSubject] = useState<string>(initialSubjectId || 'todas');
   const [selectedStatus, setSelectedStatus] = useState<string>('todas');
   const [activeModalActivity, setActiveModalActivity] = useState<Activity | null>(null);
   const [uploadSuccess, setUploadSuccess] = useState(false);
@@ -64,11 +63,11 @@ export const ActivitiesView: React.FC<ActivitiesViewProps> = ({
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
       
       {/* Cabecera y filtros */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-        <div>
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-center gap-4 mb-6">
+        <div className="justify-self-center sm:justify-self-start text-center sm:text-left">
           <h1 className="text-2xl sm:text-3xl font-extrabold text-[#22304a] tracking-tight">
             Actividades
           </h1>
@@ -78,7 +77,7 @@ export const ActivitiesView: React.FC<ActivitiesViewProps> = ({
         </div>
 
         {/* Filtros de estado suaves */}
-        <div className="flex items-center gap-1.5 bg-white p-1 rounded-2xl border border-[#bcdee0]/60 shadow-xs overflow-x-auto">
+        <div className="flex items-center justify-center gap-1.5 bg-white p-1 rounded-2xl border border-[#bcdee0]/60 shadow-xs overflow-x-auto justify-self-center">
           {['todas', 'pendiente', 'vencida', 'entregada', 'calificada'].map((status) => (
             <button
               key={status}
@@ -93,13 +92,15 @@ export const ActivitiesView: React.FC<ActivitiesViewProps> = ({
             </button>
           ))}
         </div>
+
+        <div className="hidden sm:block" />
       </div>
 
-      {/* Disposición de dos columnas (Wireframe 05) */}
-      <div className="flex flex-col lg:flex-row gap-6 items-start">
+      {/* Listado de actividades agrupadas por materia */}
+      <div className="w-full max-w-6xl mx-auto">
         
         {/* COLUMNA IZQUIERDA: LISTADO DE ACTIVIDADES AGRUPADAS POR MATERIA */}
-        <div className="flex-1 w-full space-y-7">
+        <div className="w-full space-y-6">
           
           {subjectsWithActivities.length === 0 ? (
             <Card className="p-8 text-center border-dashed border-[#bcdee0]">
@@ -190,67 +191,6 @@ export const ActivitiesView: React.FC<ActivitiesViewProps> = ({
             })
           )}
 
-        </div>
-
-        {/* COLUMNA DERECHA: "MIS CLASES" (Wireframe 05) */}
-        <div className="w-full lg:w-80 shrink-0 space-y-4">
-          <Card className="p-5 border-[#bcdee0]/60">
-            <div className="flex items-center justify-between pb-3 border-b border-[#bcdee0]/30 mb-4">
-              <div className="flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-[#45aec4]" />
-                <h3 className="font-bold text-[#22304a] text-base">Mis clases</h3>
-              </div>
-              <span className="text-xs text-[#45aec4] font-bold">Filtro rápido</span>
-            </div>
-
-            <div className="space-y-2">
-              <button
-                onClick={() => setSelectedSubject('todas')}
-                className={`w-full text-left p-3 rounded-2xl text-xs font-bold transition-all cursor-pointer flex items-center justify-between ${
-                  selectedSubject === 'todas'
-                    ? 'bg-[#45aec4] text-white shadow-xs'
-                    : 'bg-[#edf7f9] text-[#22304a] hover:bg-[#bcdee0]/40'
-                }`}
-              >
-                <span>Ver todas las materias</span>
-                <span>{mockActivities.length}</span>
-              </button>
-
-              {mockClasses.map((clase: ClassCourse) => {
-                const count = mockActivities.filter((a: Activity) => a.materiaId === clase.id).length;
-                const isSelected = selectedSubject === clase.id;
-
-                return (
-                  <button
-                    key={clase.id}
-                    onClick={() => setSelectedSubject(clase.id)}
-                    className={`w-full text-left p-3.5 rounded-2xl transition-all cursor-pointer border ${
-                      isSelected
-                        ? 'bg-[#22304a] text-white border-[#22304a] shadow-sm'
-                        : 'bg-white hover:bg-[#f6fafd] text-[#22304a] border-[#bcdee0]/50'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between mb-1">
-                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md ${
-                        isSelected ? 'bg-white/20 text-white' : 'bg-[#edf7f9] text-[#45aec4]'
-                      }`}>
-                        {clase.codigo}
-                      </span>
-                      <span className="text-[11px] font-bold opacity-80">
-                        {count} tareas
-                      </span>
-                    </div>
-                    <div className="font-bold text-xs leading-snug">
-                      {clase.nombre}
-                    </div>
-                    <div className="text-[10px] opacity-70 mt-1">
-                      {clase.profesor}
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </Card>
         </div>
 
       </div>

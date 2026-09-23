@@ -133,8 +133,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
                 <div
                   key={act.id}
                   onClick={() => onNavigate('actividades')}
-                  className="group bg-[#b8dcde] rounded-[36px] p-6 shadow-xl shadow-[#b8dcde]/40 hover:shadow-2xl hover:shadow-[#77c7d2]/35 transition-all duration-300 flex flex-col justify-between min-h-[250px] sm:min-h-[270px] cursor-pointer hover:-translate-y-1 border border-white/40"
-                >
+                  className="group bg-white/40 rounded-[36px] p-6 shadow-xl shadow-[#b8dcde]/40 hover:shadow-2xl hover:shadow-[#77c7d2]/35 transition-all duration-300 flex flex-col justify-between min-h-[250px] sm:min-h-[270px] cursor-pointer hover:-translate-y-1 border border-white/40">
                   {/* Cabecera */}
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
