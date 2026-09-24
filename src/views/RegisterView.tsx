@@ -56,19 +56,19 @@ export const RegisterView: React.FC<RegisterViewProps> = ({
 
   return (
     <div className="min-h-[85vh] flex flex-col items-center justify-center px-4 py-8 relative">
-      <div className="absolute top-10 right-1/4 w-80 h-80 bg-[#45aec4]/20 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-10 left-1/4 w-80 h-80 bg-[#fec23d]/15 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-10 right-1/4 w-80 h-80 bg-[#cde8d8]/30 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-10 left-1/4 w-80 h-80 bg-[#f7ddc1]/40 rounded-full blur-3xl pointer-events-none -z-10" />
 
       <div className="w-full max-w-md">
         <Card className="p-8 sm:p-10 border-[#bcdee0]/60 shadow-[0_20px_40px_-15px_rgba(34,48,74,0.08),0_8px_20px_-6px_rgba(69,174,196,0.12)]">
           <div className="text-center mb-6">
-            <div className="w-14 h-14 mx-auto mb-3 rounded-2xl bg-[#edf7f9] border border-[#77c7d2]/40 text-[#45aec4] flex items-center justify-center shadow-inner">
+            <div className="w-14 h-14 mx-auto mb-3 rounded-2xl bg-[#cde8d8] border border-white/80 text-[#178568] flex items-center justify-center shadow-inner">
               <School className="w-7 h-7 stroke-[2.2]" />
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#22304a] tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#4d2929] tracking-tight">
               Regístrate Aquí
             </h1>
-            <p className="text-xs sm:text-sm text-[#22304a]/70 mt-1 font-medium">
+            <p className="text-xs sm:text-sm text-[#5f4440]/70 mt-1 font-medium">
               Crea tu perfil de estudiante en el sistema SAIUT
             </p>
           </div>
@@ -85,7 +85,7 @@ export const RegisterView: React.FC<RegisterViewProps> = ({
                   Nombre completo
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#77c7d2]">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#178568]">
                     <User className="w-4 h-4" />
                   </div>
                   <input
@@ -104,7 +104,7 @@ export const RegisterView: React.FC<RegisterViewProps> = ({
                   Correo electrónico
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#77c7d2]">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#178568]">
                     <Mail className="w-4 h-4" />
                   </div>
                   <input
@@ -123,7 +123,7 @@ export const RegisterView: React.FC<RegisterViewProps> = ({
                   Matrícula
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#77c7d2]">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#178568]">
                     <Hash className="w-4 h-4" />
                   </div>
                   <input
@@ -142,7 +142,7 @@ export const RegisterView: React.FC<RegisterViewProps> = ({
                   Crea una contraseña
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#77c7d2]">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#178568]">
                     <Lock className="w-4 h-4" />
                   </div>
                   <input
@@ -170,7 +170,7 @@ export const RegisterView: React.FC<RegisterViewProps> = ({
                   variant="primary"
                   size="lg"
                   disabled={isLoading}
-                  className="w-full text-white font-bold bg-[#45aec4] hover:bg-[#3ba0b5] shadow-md shadow-[#45aec4]/20"
+                  className="w-full text-white font-bold bg-[#178568] hover:bg-[#116c55] shadow-md shadow-[#178568]/20"
                   icon={<UserPlus className="w-4 h-4" />}
                 >
                   {isLoading ? 'Registrando cuenta...' : 'Regístrate'}
@@ -182,7 +182,7 @@ export const RegisterView: React.FC<RegisterViewProps> = ({
           <div className="mt-6 pt-5 border-t border-[#bcdee0]/40 text-center">
             <button
               onClick={onNavigateToLogin}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#45aec4] hover:text-[#22304a] transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#178568] hover:text-[#116c55] transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               ¿Ya tienes cuenta? Inicia sesión aquí
@@ -193,4 +193,3 @@ export const RegisterView: React.FC<RegisterViewProps> = ({
     </div>
   );
 };
-

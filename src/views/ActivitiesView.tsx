@@ -66,26 +66,26 @@ export const ActivitiesView: React.FC<ActivitiesViewProps> = ({
     <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
       
       {/* Cabecera y filtros */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-center gap-4 mb-6">
-        <div className="justify-self-center sm:justify-self-start text-center sm:text-left">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#22304a] tracking-tight">
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <div className="text-center sm:text-left">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#4d2929] tracking-tight">
             Actividades
           </h1>
-          <p className="text-xs sm:text-sm text-[#22304a]/70 mt-1 font-medium">
+          <p className="text-xs sm:text-sm text-[#5f4440]/70 mt-1 font-medium">
             Entregas, proyectos y evaluaciones del cuatrimestre
           </p>
         </div>
 
         {/* Filtros de estado suaves */}
-        <div className="flex items-center justify-center gap-1.5 bg-white p-1 rounded-2xl border border-[#bcdee0]/60 shadow-xs overflow-x-auto justify-self-center">
+        <div className="flex items-center justify-center gap-1.5 bg-[#527466]/75 p-1 rounded-full border border-white/80 shadow-sm overflow-x-auto self-center sm:self-auto">
           {['todas', 'pendiente', 'vencida', 'entregada', 'calificada'].map((status) => (
             <button
               key={status}
               onClick={() => setSelectedStatus(status)}
               className={`px-3 py-1.5 rounded-xl text-xs font-bold capitalize transition-all cursor-pointer whitespace-nowrap ${
                 selectedStatus === status
-                  ? 'bg-[#45aec4] text-white shadow-xs'
-                  : 'text-[#22304a]/75 hover:bg-[#edf7f9]'
+                  ? 'bg-[#178568] text-white shadow-xs'
+                  : 'text-white/85 hover:bg-white/20'
               }`}
             >
               {status}
@@ -93,7 +93,6 @@ export const ActivitiesView: React.FC<ActivitiesViewProps> = ({
           ))}
         </div>
 
-        <div className="hidden sm:block" />
       </div>
 
       {/* Listado de actividades agrupadas por materia */}
@@ -122,12 +121,12 @@ export const ActivitiesView: React.FC<ActivitiesViewProps> = ({
                   {/* Título de la materia (Wireframe 05: Matemáticas, Desarrollo humano) */}
                   <div className="flex items-center justify-between pb-1 border-b border-[#bcdee0]/40">
                     <div className="flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full bg-[#45aec4]" />
-                      <h2 className="text-base sm:text-lg font-extrabold text-[#22304a]">
+                      <div className="w-2.5 h-6 rounded-full bg-[#178568]" />
+                      <h2 className="text-base sm:text-lg font-extrabold text-[#4d2929]">
                         {materiaNombre}
                       </h2>
                     </div>
-                    <span className="text-xs font-semibold text-[#22304a]/60">
+                    <span className="text-xs font-semibold text-[#5f4440]/60">
                       {activitiesInGroup.length} tarea{activitiesInGroup.length > 1 ? 's' : ''}
                     </span>
                   </div>
@@ -138,28 +137,28 @@ export const ActivitiesView: React.FC<ActivitiesViewProps> = ({
                       <div
                         key={act.id}
                         onClick={() => setActiveModalActivity(act)}
-                        className="p-4 rounded-2xl bg-white hover:bg-[#f6fafd] border border-[#bcdee0]/50 shadow-xs hover:shadow-md transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 cursor-pointer group"
+                        className="p-6 rounded-[30px] bg-[#fffaf1]/75 backdrop-blur-md hover:bg-[#fffaf1] border border-white/80 shadow-lg shadow-[#806b54]/15 hover:-translate-y-1 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 cursor-pointer group"
                       >
                         <div className="flex items-start gap-3">
                           <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 mt-0.5 ${
                             act.estado === 'calificada' 
-                              ? 'bg-[#eff5ff] text-[#2c5eb3]' 
+                              ? 'bg-[#cde8d8] text-[#178568]' 
                               : act.estado === 'entregada'
-                              ? 'bg-[#eaf8fa] text-[#45aec4]'
+                              ? 'bg-[#cde8d8] text-[#178568]'
                               : act.estado === 'vencida'
                               ? 'bg-red-50 text-red-600'
-                              : 'bg-[#fff8e7] text-[#9c6a08]'
+                              : 'bg-[#f7ddc1]/85 text-[#4d2929]'
                           }`}>
                             <FileText className="w-4 h-4" />
                           </div>
 
                           <div>
-                            <h3 className="text-sm font-bold text-[#22304a] group-hover:text-[#45aec4] transition-colors leading-snug">
+                            <h3 className="text-sm font-bold text-[#4d2929] group-hover:text-[#178568] transition-colors leading-snug">
                               {act.titulo}
                             </h3>
                             <div className="flex items-center gap-3 mt-1 text-xs text-[#22304a]/70">
                               <span className="flex items-center gap-1 font-medium">
-                                <Clock className="w-3 h-3 text-[#77c7d2]" />
+                                <Clock className="w-3 h-3 text-[#178568]" />
                                 Vence: {act.fechaLimite} ({act.horaLimite})
                               </span>
                               <span>•</span>
@@ -198,10 +197,10 @@ export const ActivitiesView: React.FC<ActivitiesViewProps> = ({
       {/* Modal interactivo de Subir Tarea / Detalle de actividad */}
       {activeModalActivity && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs animate-in fade-in">
-          <div className="w-full max-w-lg bg-white rounded-3xl p-6 border border-[#bcdee0] shadow-2xl relative animate-in zoom-in-95">
+          <div className="w-full max-w-lg bg-[#fffaf1]/95 backdrop-blur-md rounded-[30px] p-6 border border-white/80 shadow-lg shadow-[#806b54]/15 relative animate-in zoom-in-95">
             <button
               onClick={() => setActiveModalActivity(null)}
-              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#edf7f9] text-[#22304a] hover:bg-[#bcdee0] flex items-center justify-center cursor-pointer transition-colors"
+              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#178568] text-white hover:bg-[#116c55] flex items-center justify-center cursor-pointer transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
@@ -231,7 +230,7 @@ export const ActivitiesView: React.FC<ActivitiesViewProps> = ({
 
             {/* Simulación de Subir Archivo */}
             <form onSubmit={handleSimulatedSubmit} className="space-y-4">
-              <div className="border-2 border-dashed border-[#77c7d2]/60 hover:border-[#45aec4] rounded-2xl p-5 text-center bg-[#edf7f9]/40 hover:bg-[#edf7f9]/70 transition-all cursor-pointer">
+              <div className="border-2 border-dashed border-[#178568]/40 hover:border-[#178568] rounded-2xl p-5 text-center bg-[#cde8d8]/40 hover:bg-[#cde8d8]/70 transition-all cursor-pointer">
                 <UploadCloud className="w-9 h-9 text-[#45aec4] mx-auto mb-2" />
                 <p className="text-xs font-bold text-[#22304a]">
                   Arrastra tu archivo aquí o haz clic para seleccionar
@@ -304,4 +303,3 @@ export const ActivitiesView: React.FC<ActivitiesViewProps> = ({
     </div>
   );
 };
-

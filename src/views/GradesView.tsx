@@ -27,10 +27,10 @@ export const GradesView: React.FC = () => {
       
       {/* Cabecera */}
       <div className="mb-6">
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#22304a] tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#4d2929] tracking-tight">
           Calificaciones y Avance Académico
         </h1>
-        <p className="text-xs sm:text-sm text-[#22304a]/70 mt-1 font-medium">
+        <p className="text-xs sm:text-sm text-[#5f4440]/70 mt-1 font-medium">
           Historial de evaluaciones parciales y promedio del 4to Cuatrimestre
         </p>
       </div>
@@ -38,44 +38,44 @@ export const GradesView: React.FC = () => {
       {/* Tarjetas de Métricas de Desempeño */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         
-        <Card className="p-5 border-[#bcdee0]/60 flex items-center gap-4 bg-gradient-to-br from-white to-[#f4faff]">
-          <div className="w-12 h-12 rounded-2xl bg-[#45aec4] text-white flex items-center justify-center shadow-md shadow-[#45aec4]/25">
+        <Card className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-2xl bg-[#178568] text-white flex items-center justify-center shadow-md shadow-[#178568]/25">
             <Award className="w-6 h-6" />
           </div>
           <div>
-            <span className="text-[11px] font-bold text-[#22304a]/60 uppercase tracking-wider block">
+            <span className="text-[11px] font-bold text-[#5f4440]/60 uppercase tracking-wider block">
               Promedio General
             </span>
-            <span className="text-2xl font-extrabold text-[#22304a]">
-              {average} <span className="text-xs font-semibold text-[#45aec4]">/ 10</span>
+            <span className="text-2xl font-extrabold text-[#4d2929]">
+              {average} <span className="text-xs font-semibold text-[#178568]">/ 10</span>
             </span>
           </div>
         </Card>
 
-        <Card className="p-5 border-[#bcdee0]/60 flex items-center gap-4 bg-gradient-to-br from-white to-[#fffcf5]">
-          <div className="w-12 h-12 rounded-2xl bg-[#fec23d] text-[#855502] flex items-center justify-center shadow-md shadow-[#fec23d]/25">
+        <Card className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-2xl bg-[#f7ddc1] text-[#4d2929] flex items-center justify-center shadow-md shadow-[#806b54]/15">
             <GraduationCap className="w-6 h-6" />
           </div>
           <div>
-            <span className="text-[11px] font-bold text-[#22304a]/60 uppercase tracking-wider block">
+            <span className="text-[11px] font-bold text-[#5f4440]/60 uppercase tracking-wider block">
               Créditos Cursados
             </span>
-            <span className="text-2xl font-extrabold text-[#22304a]">
-              {totalCredits} <span className="text-xs font-semibold text-[#855502]">Créditos</span>
+            <span className="text-2xl font-extrabold text-[#4d2929]">
+              {totalCredits} <span className="text-xs font-semibold text-[#4d2929]">Créditos</span>
             </span>
           </div>
         </Card>
 
-        <Card className="p-5 border-[#bcdee0]/60 flex items-center gap-4 bg-gradient-to-br from-white to-[#f6fcf8]">
-          <div className="w-12 h-12 rounded-2xl bg-[#77c7d2] text-[#1f7c8f] flex items-center justify-center shadow-md shadow-[#77c7d2]/25">
+        <Card className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-2xl bg-[#cde8d8] text-[#178568] flex items-center justify-center shadow-md shadow-[#178568]/25">
             <BookCheck className="w-6 h-6" />
           </div>
           <div>
-            <span className="text-[11px] font-bold text-[#22304a]/60 uppercase tracking-wider block">
+            <span className="text-[11px] font-bold text-[#5f4440]/60 uppercase tracking-wider block">
               Materias Aprobadas
             </span>
-            <span className="text-2xl font-extrabold text-[#1e7e4e]">
-              6 / 6 <span className="text-xs font-semibold text-[#1e7e4e]">(100%)</span>
+            <span className="text-2xl font-extrabold text-[#178568]">
+              6 / 6 <span className="text-xs font-semibold text-[#178568]">(100%)</span>
             </span>
           </div>
         </Card>
@@ -84,16 +84,16 @@ export const GradesView: React.FC = () => {
 
       {/* Tabla de Calificaciones por Parcial */}
       <Card className="p-6 border-[#bcdee0]/60">
-        <div className="pb-4 mb-4 border-b border-[#bcdee0]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div className="pb-4 mb-4 border-b border-white/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
-            <h2 className="text-lg font-bold text-[#22304a]">
+            <h2 className="text-lg font-bold text-[#4d2929]">
               Detalle de Parciales por Asignatura
             </h2>
-            <p className="text-xs text-[#22304a]/65">
+            <p className="text-xs text-[#5f4440]/65">
               Escala de calificación numérica de 0 a 10 (Mínima aprobatoria: 7.0)
             </p>
           </div>
-          <span className="text-xs font-bold px-3 py-1 rounded-xl bg-[#edf7f9] text-[#45aec4]">
+          <span className="text-xs font-bold px-3 py-1 rounded-full bg-[#f7ddc1]/85 text-[#4d2929]">
             Cuatrimestre 4 • Regular
           </span>
         </div>
@@ -101,7 +101,7 @@ export const GradesView: React.FC = () => {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs sm:text-sm">
             <thead>
-              <tr className="border-b border-[#bcdee0]/50 text-[#22304a]/70 font-bold uppercase text-[11px] tracking-wider">
+              <tr className="border-b border-white/80 text-[#5f4440]/70 font-bold uppercase text-[11px] tracking-wider">
                 <th className="pb-3 px-3">Materia</th>
                 <th className="pb-3 px-3">Profesor</th>
                 <th className="pb-3 px-3 text-center">Créditos</th>
@@ -114,30 +114,30 @@ export const GradesView: React.FC = () => {
             </thead>
             <tbody className="divide-y divide-[#bcdee0]/30">
               {mockGrades.map((g: GradeItem) => (
-                <tr key={g.materiaId} className="hover:bg-[#f6fafd] transition-colors">
-                  <td className="py-4 px-3 font-bold text-[#22304a]">
+                <tr key={g.materiaId} className="hover:bg-[#f7ddc1]/30 transition-colors">
+                  <td className="py-4 px-3 font-bold text-[#4d2929]">
                     {g.materia}
                   </td>
-                  <td className="py-4 px-3 text-[#22304a]/70 font-medium">
+                  <td className="py-4 px-3 text-[#5f4440]/70 font-medium">
                     {g.profesor}
                   </td>
-                  <td className="py-4 px-3 text-center text-[#22304a]/80 font-bold">
+                  <td className="py-4 px-3 text-center text-[#5f4440]/80 font-bold">
                     {g.creditos}
                   </td>
-                  <td className="py-4 px-3 text-center font-semibold text-[#22304a]">
+                  <td className="py-4 px-3 text-center font-semibold text-[#4d2929]">
                     {g.parcial1 !== null ? g.parcial1.toFixed(1) : '-'}
                   </td>
-                  <td className="py-4 px-3 text-center font-semibold text-[#22304a]">
+                  <td className="py-4 px-3 text-center font-semibold text-[#4d2929]">
                     {g.parcial2 !== null ? g.parcial2.toFixed(1) : '-'}
                   </td>
-                  <td className="py-4 px-3 text-center font-semibold text-[#22304a]/50">
+                  <td className="py-4 px-3 text-center font-semibold text-[#5f4440]/50">
                     {g.parcial3 !== null ? g.parcial3.toFixed(1) : 'Pendiente'}
                   </td>
-                  <td className="py-4 px-3 text-center font-extrabold text-[#45aec4] text-sm">
+                  <td className="py-4 px-3 text-center font-extrabold text-[#178568] text-sm">
                     {g.promedioFinal !== null ? g.promedioFinal.toFixed(1) : '-'}
                   </td>
                   <td className="py-4 px-3 text-right">
-                    <span className="inline-block px-2.5 py-1 rounded-full text-xs font-bold bg-[#eafaf1] text-[#1e7e4e] border border-[#a2e5be]">
+                    <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#cde8d8] text-[#178568] border border-white/80">
                       {g.estatus}
                     </span>
                   </td>
@@ -151,4 +151,3 @@ export const GradesView: React.FC = () => {
     </div>
   );
 };
-

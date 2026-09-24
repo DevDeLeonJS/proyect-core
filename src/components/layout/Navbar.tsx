@@ -42,7 +42,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   return (
-    <header className="fixed top-4 left-3 right-3 z-50 px-3 sm:px-6 lg:px-10 py-3 transition-all">
+    <header className="fixed top-0 left-3 right-3 z-50 px-3 sm:px-6 lg:px-10 py-3 transition-all">
       <div className="w-full flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-2 rounded-full bg-white/45 backdrop-blur-xl border border-white/70 shadow-lg shadow-[#315f4d]/20">
         
         {/* 1. LOGO & BRAND "SAIIUT" */}

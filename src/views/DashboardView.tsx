@@ -39,7 +39,7 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   const topThreeActivities = pendingActivities.slice(0, 3);
 
   return (
-    <div className="w-full flex flex-col lg:flex-row min-h-[calc(100vh-68px)] bg-[#eef1e8]">
+    <div className="w-full flex flex-col lg:flex-row min-h-[calc(100vh-68px)]">
       
       {/* =====================================================================
           COLUMNA IZQUIERDA: ÁREA PRINCIPAL BLANCA

@@ -56,14 +56,14 @@ export const PaymentsView: React.FC = () => {
           
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-[10px] uppercase font-bold tracking-wider text-[#45aec4] bg-[#edf7f9] px-2.5 py-0.5 rounded-full border border-[#bcdee0]/50">
+              <span className="text-xs font-bold tracking-wider text-[#4d2929] bg-[#f7ddc1]/85 px-3 py-1 rounded-full">
                 Ficha Financiera del Alumno
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#22304a] tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#4d2929] tracking-tight">
               {mockCurrentUser.nombre}
             </h1>
-            <p className="text-xs text-[#22304a]/70 font-medium mt-0.5">
+            <p className="text-xs text-[#5f4440]/70 font-medium mt-0.5">
               {mockCurrentUser.carrera} • {mockCurrentUser.cuatrimestre}
             </p>
           </div>
@@ -71,7 +71,7 @@ export const PaymentsView: React.FC = () => {
           {/* Cuatro cápsulas del wireframe: Matrícula, Status, Grupo, Beca */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
             
-            <div className="p-3 rounded-2xl bg-[#edf7f9] border border-[#bcdee0]/60">
+            <div className="p-3 rounded-2xl bg-[#f7ddc1]/60 border border-white/80">
               <span className="text-[10px] font-bold text-[#22304a]/60 block uppercase">
                 Matrícula
               </span>
@@ -80,7 +80,7 @@ export const PaymentsView: React.FC = () => {
               </span>
             </div>
 
-            <div className="p-3 rounded-2xl bg-[#eafaf1] border border-[#a2e5be]">
+            <div className="p-3 rounded-2xl bg-[#cde8d8]/80 border border-white/80">
               <span className="text-[10px] font-bold text-[#1e7e4e]/80 block uppercase">
                 Estatus
               </span>
@@ -90,7 +90,7 @@ export const PaymentsView: React.FC = () => {
               </span>
             </div>
 
-            <div className="p-3 rounded-2xl bg-[#edf7f9] border border-[#bcdee0]/60">
+            <div className="p-3 rounded-2xl bg-[#f7ddc1]/60 border border-white/80">
               <span className="text-[10px] font-bold text-[#22304a]/60 block uppercase">
                 Grupo
               </span>
@@ -99,7 +99,7 @@ export const PaymentsView: React.FC = () => {
               </span>
             </div>
 
-            <div className="p-3 rounded-2xl bg-[#fff8e7] border border-[#fec23d]/50">
+            <div className="p-3 rounded-2xl bg-[#f7ddc1]/85 border border-white/80">
               <span className="text-[10px] font-bold text-[#9c6a08] block uppercase">
                 Beca
               </span>
@@ -130,7 +130,7 @@ export const PaymentsView: React.FC = () => {
 
           <div className="text-right">
             <span className="text-xs text-[#22304a]/60 font-medium">Ciclo Actual: </span>
-            <span className="text-xs font-bold text-[#45aec4] bg-[#edf7f9] px-2.5 py-1 rounded-xl">
+            <span className="text-xs font-bold text-[#4d2929] bg-[#f7ddc1]/85 px-3 py-1 rounded-full">
               Sep - Dic 2026
             </span>
           </div>
@@ -139,7 +139,7 @@ export const PaymentsView: React.FC = () => {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs sm:text-sm">
             <thead>
-              <tr className="border-b border-[#bcdee0]/50 text-[#22304a]/70 font-bold uppercase text-[11px] tracking-wider">
+              <tr className="border-b border-white/80 text-[#5f4440]/70 font-bold uppercase text-[11px] tracking-wider">
                 <th className="pb-3 px-3">Concepto</th>
                 <th className="pb-3 px-3">Periodo</th>
                 <th className="pb-3 px-3">Fecha límite</th>
@@ -152,7 +152,7 @@ export const PaymentsView: React.FC = () => {
             </thead>
             <tbody className="divide-y divide-[#bcdee0]/30">
               {payments.map((p) => (
-                <tr key={p.id} className="hover:bg-[#f6fafd] transition-colors">
+                <tr key={p.id} className="hover:bg-[#f7ddc1]/30 transition-colors">
                   <td className="py-4 px-3">
                     <div className="font-bold text-[#22304a]">{p.concepto}</div>
                     {p.folioComprobante && (
@@ -192,7 +192,7 @@ export const PaymentsView: React.FC = () => {
                     {p.estado === 'pagado' ? (
                       <button
                         onClick={() => handleDownloadReceipt(p.folioComprobante)}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#edf7f9] text-[#45aec4] hover:bg-[#bcdee0]/50 font-bold text-xs transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#f7ddc1]/85 text-[#4d2929] hover:bg-[#f7ddc1] font-bold text-xs transition-colors cursor-pointer"
                         title="Descargar Comprobante PDF"
                       >
                         <Download className="w-3.5 h-3.5" />
@@ -215,7 +215,7 @@ export const PaymentsView: React.FC = () => {
           </table>
         </div>
 
-        <div className="mt-6 p-4 rounded-2xl bg-[#edf7f9]/60 border border-[#bcdee0]/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+        <div className="mt-6 p-4 rounded-2xl bg-[#f7ddc1]/60 border border-white/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2 text-[#22304a]/75">
             <CreditCard className="w-4 h-4 text-[#45aec4]" />
             <span>Métodos de pago aceptados: Tarjetas de crédito/débito, Transferencia SPEI, Tiendas OXXO.</span>
@@ -230,10 +230,10 @@ export const PaymentsView: React.FC = () => {
       {/* Modal simulador de pago */}
       {selectedPaymentForPay && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs animate-in fade-in">
-          <div className="w-full max-w-md bg-white rounded-3xl p-6 border border-[#bcdee0] shadow-2xl relative">
+          <div className="w-full max-w-md bg-[#fffaf1]/95 backdrop-blur-md rounded-[30px] p-6 border border-white/80 shadow-lg shadow-[#806b54]/15 relative">
             <button
               onClick={() => setSelectedPaymentForPay(null)}
-              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#edf7f9] text-[#22304a] hover:bg-[#bcdee0] flex items-center justify-center cursor-pointer transition-colors"
+              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#178568] text-white hover:bg-[#116c55] flex items-center justify-center cursor-pointer transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
@@ -289,4 +289,3 @@ export const PaymentsView: React.FC = () => {
     </div>
   );
 };
-
