@@ -59,10 +59,10 @@ export const RightSidebar: React.FC<RightSidebarProps> = () => {
   const blankDays = Array.from({ length: startOffset }, (_, i) => i);
 
   return (
-    <aside className="w-full lg:w-[325px] xl:w-[345px] bg-[#fed77a] p-4 sm:p-5 flex flex-col gap-5 shrink-0 self-start h-fit sticky top-0">
+    <aside className="fixed top-0 right-0 z-10 w-full lg:w-[325px] xl:w-[345px] h-screen overflow-y-auto bg-gradient-to-b from-[#18513f] via-[#7fae9b] to-[#f5dfc5] p-4 sm:p-5 pt-24 sm:pt-28 flex flex-col gap-5">
       
       {/* 1. TARJETA CALENDARIO (Blanca con esquinas redondeadas exactas a la imagen) */}
-      <div className="bg-white rounded-[32px] p-5 shadow-sm flex flex-col justify-between">
+      <div className="bg-[#d8e4d7]/55 backdrop-blur-xl rounded-[32px] p-5 shadow-xl shadow-[#173d31]/25 ring-1 ring-white/55 flex flex-col justify-between">
         
         {/* Cabecera del Calendario */}
         <div className="flex items-center justify-between mb-3.5">
@@ -70,13 +70,13 @@ export const RightSidebar: React.FC<RightSidebarProps> = () => {
             <div className="w-7 h-7 rounded-xl bg-[#c5e8ec] text-[#2d7d8a] flex items-center justify-center">
               <CalendarIcon className="w-3.5 h-3.5 stroke-[2.2]" />
             </div>
-            <h3 className="font-extrabold text-[#22304a] text-base">
+            <h3 className="font-extrabold text-[#55372d] text-base">
               Calendario
             </h3>
           </div>
 
           {/* Pastilla Turquesa con Selector de Mes */}
-          <div className="flex items-center gap-1 bg-[#62b9cc] text-white px-2.5 py-1 rounded-full text-[11px] font-bold shadow-xs">
+          <div className="flex items-center gap-1 text-[#55372d] px-1 text-[11px] font-bold">
             <button 
               onClick={handlePrevMonth}
               className="hover:opacity-80 transition-opacity cursor-pointer p-0.5"
@@ -100,7 +100,7 @@ export const RightSidebar: React.FC<RightSidebarProps> = () => {
         {/* Días de la semana */}
         <div className="grid grid-cols-7 gap-1 text-center mb-1.5">
           {daysOfWeek.map((day) => (
-            <span key={day} className="text-[11px] font-bold text-[#22304a]/50 py-0.5">
+            <span key={day} className="text-[11px] font-bold text-[#55372d]/75 py-0.5">
               {day}
             </span>
           ))}
@@ -121,15 +121,15 @@ export const RightSidebar: React.FC<RightSidebarProps> = () => {
                 onClick={() => setSelectedDay(day)}
                 className={`h-7 w-full rounded-xl text-xs font-semibold flex flex-col items-center justify-center relative transition-all cursor-pointer ${
                   isSelected
-                    ? 'bg-[#45aec4] text-white shadow-xs font-bold scale-105'
-                    : 'text-[#22304a] hover:bg-[#edf7f9]'
+                    ? 'bg-[#176b52] text-white shadow-md font-bold scale-105'
+                    : 'text-[#55372d] hover:bg-white/30'
                 }`}
               >
                 <span>{day}</span>
                 {hasEvent && (
                   <span 
                     className={`w-1.5 h-1.5 rounded-full mt-0.5 ${
-                      isSelected ? 'bg-[#fed77a]' : 'bg-[#45aec4]'
+                      isSelected ? 'bg-white' : 'bg-[#238b68]'
                     }`}
                   />
                 )}
@@ -141,10 +141,10 @@ export const RightSidebar: React.FC<RightSidebarProps> = () => {
         {/* Evento activo del día */}
         <div className="mt-4 pt-3.5 border-t border-[#bcdee0]/40">
           {activeEvent ? (
-            <div className="bg-[#f5fbfd] rounded-2xl p-3 border border-[#77c7d2]/40 relative shadow-xs">
+            <div className="bg-[#fff8ed] rounded-2xl p-3 border border-white/80 relative shadow-sm">
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-xl bg-[#45aec4] text-white flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-xl bg-[#c6dfca] text-[#176b52] flex items-center justify-center">
                     {activeEvent.tipo === 'examen' ? (
                       <AlertCircle className="w-3.5 h-3.5" />
                     ) : (
@@ -152,10 +152,10 @@ export const RightSidebar: React.FC<RightSidebarProps> = () => {
                     )}
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase font-bold tracking-wider text-[#45aec4]">
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-[#237259]">
                       {activeEvent.tipo === 'examen' ? 'Examen' : 'Actividad'}
                     </span>
-                    <h4 className="text-xs font-bold text-[#22304a]">
+                    <h4 className="text-xs font-bold text-[#55372d]">
                       {activeEvent.titulo}
                     </h4>
                   </div>
@@ -167,8 +167,8 @@ export const RightSidebar: React.FC<RightSidebarProps> = () => {
               </div>
 
               {activeEvent.materia && (
-                <p className="mt-1.5 text-[11px] text-[#22304a]/75 flex items-center gap-1.5">
-                  <span className="font-semibold text-[#22304a]">{activeEvent.materia}</span>
+                <p className="mt-1.5 text-[11px] text-[#55372d]/75 flex items-center gap-1.5">
+                  <span className="font-semibold text-[#55372d]">{activeEvent.materia}</span>
                   <span>•</span>
                   <span>Día {activeEvent.dia}</span>
                 </p>
@@ -185,18 +185,18 @@ export const RightSidebar: React.FC<RightSidebarProps> = () => {
 
       </div>
 
-      {/* 2. TARJETA AVISOS (Se adapta en tamaño según cuántos avisos haya, sin estirarse a lo loco) */}
-      <div className="bg-white rounded-[32px] p-5 shadow-sm h-auto shrink-0">
-        <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-[#bcdee0]/30">
+      {/* 2. TARJETA AVISOS */}
+      <div className="bg-[#d8e4d7]/55 backdrop-blur-xl rounded-[32px] p-5 shadow-xl shadow-[#173d31]/25 ring-1 ring-white/55 h-auto shrink-0">
+        <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/55">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-xl bg-[#fed77a]/30 text-[#855502] flex items-center justify-center">
+            <div className="w-7 h-7 rounded-full bg-[#f5dfc5] text-[#704638] flex items-center justify-center shadow-sm">
               <Megaphone className="w-3.5 h-3.5" />
             </div>
-            <h3 className="font-extrabold text-[#22304a] text-sm sm:text-base">
+            <h3 className="font-extrabold text-[#55372d] text-sm sm:text-base">
               Avisos Escolares
             </h3>
           </div>
-          <span className="text-xs font-bold text-[#45aec4] bg-[#edf7f9] px-2 py-0.5 rounded-full">
+          <span className="w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold text-white bg-[#176b52] shadow-sm">
             {mockAnnouncements.length}
           </span>
         </div>
@@ -206,27 +206,27 @@ export const RightSidebar: React.FC<RightSidebarProps> = () => {
           {mockAnnouncements.map((announcement) => (
             <div 
               key={announcement.id}
-              className="p-3 rounded-2xl bg-[#fafcfd] hover:bg-[#edf7f9] border border-[#bcdee0]/40 transition-colors"
+              className="p-3 rounded-2xl bg-[#f5dfc5]/95 hover:bg-[#fff8ed] border border-white/70 shadow-sm transition-colors"
             >
               <div className="flex items-start justify-between gap-1 mb-1">
                 <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md ${
                   announcement.categoria === 'Urgente' 
-                    ? 'bg-red-50 text-red-700' 
+                    ? 'bg-[#f4c5b3] text-[#9b3828]' 
                     : announcement.categoria === 'Académico'
-                    ? 'bg-[#eff5ff] text-[#2c5eb3]'
-                    : 'bg-[#fff9eb] text-[#855502]'
+                    ? 'bg-[#f1d3b5] text-[#704638]'
+                    : 'bg-[#f0d6b8] text-[#704638]'
                 }`}>
                   {announcement.categoria}
                 </span>
-                <span className="text-[10px] text-[#22304a]/60 font-medium flex items-center gap-1">
+                <span className="text-[10px] text-[#704638]/75 font-medium flex items-center gap-1">
                   <Clock className="w-3 h-3" />
                   {announcement.fecha}
                 </span>
               </div>
-              <h4 className="text-xs font-bold text-[#22304a]">
+              <h4 className="text-xs font-bold text-[#55372d]">
                 {announcement.titulo}
               </h4>
-              <p className="text-[11px] text-[#22304a]/75 mt-0.5 line-clamp-2">
+              <p className="text-[11px] text-[#704638]/85 mt-0.5 line-clamp-2">
                 {announcement.descripcion}
               </p>
             </div>

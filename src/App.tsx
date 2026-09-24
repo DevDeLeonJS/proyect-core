@@ -94,7 +94,7 @@ export function App() {
   const isAuthScreen = currentView === 'login' || currentView === 'registro';
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#edf4f7] text-[#22304a] selection:bg-[#45aec4] selection:text-white pb-14">
+    <div className="min-h-screen flex flex-col bg-[#f3f4f0] text-[#22304a] selection:bg-[#45aec4] selection:text-white pb-14">
       
       {/* 1. Barra de Navegación Superior (Navbar - Morado suave según especificación) */}
       {!isAuthScreen && currentUser && (
@@ -110,7 +110,9 @@ export function App() {
       )}
 
       {/* 2. Área principal de contenido */}
-      <main className="flex-1 w-full">
+      <main className={`flex-1 w-full pt-28 ${
+        currentView === 'dashboard' ? 'lg:pr-[325px] xl:pr-[345px]' : ''
+      }`}>
         {renderCurrentView()}
       </main>
 

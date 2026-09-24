@@ -42,24 +42,24 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-[#8cb9ff] px-6 lg:px-10 py-3 transition-all shadow-xs">
-      <div className="w-full flex items-center justify-between gap-4">
+    <header className="fixed top-4 left-3 right-3 z-50 px-3 sm:px-6 lg:px-10 py-3 transition-all">
+      <div className="w-full flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-2 rounded-full bg-white/45 backdrop-blur-xl border border-white/70 shadow-lg shadow-[#315f4d]/20">
         
         {/* 1. LOGO & BRAND "SAIIUT" */}
         <div 
           onClick={() => onNavigate('dashboard')}
           className="flex items-center gap-3 cursor-pointer group select-none"
         >
-          <div className="w-10 h-10 rounded-2xl bg-white shadow-xs flex items-center justify-center text-[#22304a] group-hover:scale-105 transition-transform">
+          <div className="w-10 h-10 rounded-2xl bg-white/85 shadow-sm flex items-center justify-center text-[#176b52] group-hover:scale-105 transition-transform border border-white">
             <Landmark className="w-5 h-5 stroke-[2]" />
           </div>
-          <span className="font-['Outfit',sans-serif] font-black text-2xl tracking-tight text-[#22304a]">
+          <span className="font-['Outfit',sans-serif] font-black text-2xl tracking-tight text-[#176b52]">
             SAIIUT
           </span>
         </div>
 
         {/* 2. CAPSULA DE NAVEGACIÓN CENTRAL (Exacta a la imagen) */}
-        <nav className="hidden md:flex items-center gap-1 bg-[#c5dcff] px-2 py-1.5 rounded-full shadow-inner">
+        <nav className="hidden md:flex items-center gap-1 bg-[#527466]/75 backdrop-blur-xl px-2 py-1.5 rounded-full border border-white/30 shadow-inner">
           {navItems.map((item) => {
             const isActive = currentView === item.id;
             return (
@@ -68,8 +68,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => onNavigate(item.id)}
                 className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? 'bg-white text-[#22304a] shadow-xs'
-                    : 'text-[#22304a]/85 hover:text-[#22304a] hover:bg-white/40'
+                    ? 'bg-[#178568] text-white shadow-sm border border-white/30'
+                    : 'text-white/85 hover:text-white hover:bg-white/10'
                 }`}
               >
                 {item.label}
@@ -85,7 +85,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="relative">
             <button
               onClick={() => setShowNotifications(!showNotifications)}
-              className="w-10 h-10 rounded-2xl bg-white text-[#22304a] flex items-center justify-center shadow-xs hover:bg-white/90 transition-colors cursor-pointer"
+              className="w-10 h-10 rounded-full bg-[#176b52] text-white flex items-center justify-center shadow-sm hover:bg-[#0f513f] transition-colors cursor-pointer"
               title="Notificaciones"
             >
               <Bell className="w-4 h-4 stroke-[2.2]" />
@@ -111,12 +111,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="relative">
             <button
               onClick={() => setShowProfileMenu(!showProfileMenu)}
-              className="flex items-center gap-2.5 bg-white pl-1.5 pr-4 py-1.5 rounded-2xl shadow-xs hover:bg-white/90 transition-all cursor-pointer"
+              className="flex items-center gap-2.5 bg-[#176b52] pl-1.5 pr-4 py-1.5 rounded-full shadow-sm hover:bg-[#0f513f] transition-all cursor-pointer"
             >
               <div className="w-7 h-7 rounded-xl bg-[#73c8d3] text-white flex items-center justify-center font-bold text-xs shadow-inner">
                 C
               </div>
-              <span className="text-xs font-bold text-[#22304a]">
+              <span className="text-xs font-bold text-white">
                 {user.nombre}
               </span>
             </button>
@@ -161,7 +161,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Navegación móvil inferior */}
-      <div className="flex md:hidden items-center justify-around gap-1 mt-2 pt-2 border-t border-white/20">
+      <div className="flex md:hidden items-center justify-around gap-1 mt-2 pt-2 border-t border-white/50">
         {navItems.map((item) => {
           const isActive = currentView === item.id;
           return (
@@ -169,7 +169,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               key={item.id}
               onClick={() => onNavigate(item.id)}
               className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all ${
-                isActive ? 'bg-white text-[#22304a] shadow-xs' : 'text-[#22304a]/85'
+                isActive
+                  ? 'bg-white/80 backdrop-blur-md text-[#22304a] shadow-sm border border-white/80'
+                  : 'text-[#22304a]/75 hover:bg-[#dff4ff]/60'
               }`}
             >
               {item.label}
