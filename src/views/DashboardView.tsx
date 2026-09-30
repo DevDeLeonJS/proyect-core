@@ -128,50 +128,58 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
             </div>
 
             {/* Grid con el mismo formato que las cards azules */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {overdueActivities.map((act) => (
-                <div
-                  key={act.id}
-                  onClick={() => onNavigate('actividades')}
-                  className="group bg-[#fffaf1]/75 backdrop-blur-md rounded-[30px] p-6 shadow-lg shadow-[#806b54]/15 hover:shadow-xl transition-all duration-300 flex flex-col justify-between min-h-[290px] cursor-pointer hover:-translate-y-1 border border-white/80">
-                  {/* Cabecera */}
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-extrabold text-[#6a3730] bg-[#f7ddc1]/85 px-3 py-1 rounded-full tracking-wide">
-                        {act.materia}
-                      </span>
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-[11px] font-extrabold text-red-600 bg-white/90 px-2.5 py-0.5 rounded-full shadow-2xs">
-                          Vencida
-                        </span>
-                        <div className="w-9 h-9 rounded-full bg-[#178568] text-white flex items-center justify-center group-hover:bg-[#116c55] group-hover:scale-110 transition-all shadow-sm">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {overdueActivities.map((act) => (
+                  <div
+                    key={act.id}
+                    onClick={() => onNavigate('actividades')}
+                    className="group bg-[#fffaf1]/75 backdrop-blur-md rounded-[30px] p-6 shadow-lg shadow-[#806b54]/15 hover:shadow-xl hover:shadow-[#806b54]/20 transition-all duration-300 flex flex-col justify-between min-h-[290px] cursor-pointer hover:-translate-y-1 border border-white/80"
+                  >
+                    {/* Cabecera */}
+                    <div className="space-y-3">
+                      {/* Materia + botón */}
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex flex-col items-start gap-2 min-w-0">
+                          <span className="text-xs font-extrabold text-[#6a3730] bg-[#f7ddc1]/85 px-3 py-1 rounded-full tracking-wide max-w-full">
+                            {act.materia}
+                          </span>
+                          <span className="text-[11px] font-extrabold text-red-600 bg-red-50 px-2.5 py-1 rounded-full border border-red-200">
+                            Vencida
+                          </span>
+                        </div>
+
+                        <div className="w-9 h-9 shrink-0 rounded-full bg-[#178568] text-white flex items-center justify-center group-hover:bg-[#116c55] group-hover:scale-110 transition-all shadow-sm">
                           <ArrowUpRight className="w-4 h-4" />
                         </div>
                       </div>
+
+                      {/* Título */}
+                      <h3 className="text-lg font-extrabold text-[#4d2929] leading-snug line-clamp-2">
+                        {act.titulo}
+                      </h3>
+                      {/* Descripción */}
+                      <p className="text-xs text-[#5f4440]/85 line-clamp-3 leading-relaxed">
+                        {act.descripcion}
+                      </p>
                     </div>
 
-                    <h3 className="text-lg font-extrabold text-[#4d2929] leading-snug line-clamp-2">
-                      {act.titulo}
-                    </h3>
+                    {/* Pie de tarjeta */}
+                    <div className="pt-4 border-t border-[#d9cbbb]/70 flex items-center justify-between gap-3 text-xs">
 
-                    <p className="text-xs text-[#5f4440]/85 line-clamp-3 leading-relaxed">
-                      {act.descripcion}
-                    </p>
-                  </div>
+                      <span className="font-bold text-red-700 flex items-center gap-1.5 bg-red-50 px-2.5 py-1 rounded-xl min-w-0">
+                        <AlertTriangle className="w-3.5 h-3.5 text-red-600 shrink-0" />
+                        <span className="truncate">
+                          Límite: {act.fechaLimite}
+                        </span>
+                      </span>
+                      <span className="font-extrabold text-white bg-[#178568] px-2.5 py-1 rounded-xl shrink-0">
+                        {act.puntosMaximos} pts
+                      </span>
 
-                  {/* Pie */}
-                  <div className="pt-4 border-t border-[#d9cbbb]/70 flex items-center justify-between text-xs">
-                    <span className="font-bold text-red-700 flex items-center gap-1.5 bg-white/60 px-2.5 py-1 rounded-xl">
-                      <AlertTriangle className="w-3.5 h-3.5 text-red-600" />
-                      Límite: {act.fechaLimite}
-                    </span>
-                    <span className="font-extrabold text-white bg-[#178568] px-2.5 py-1 rounded-xl">
-                      {act.puntosMaximos} pts
-                    </span>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
           </div>
         )}
 
