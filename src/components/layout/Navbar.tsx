@@ -43,7 +43,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header className="fixed top-0 left-3 right-3 z-50 px-3 sm:px-6 lg:px-10 py-3 transition-all">
-      <div className="w-full flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-2 rounded-full bg-white/45 backdrop-blur-xl border border-white/70 shadow-lg shadow-[#315f4d]/20">
+      <div className="w-full rounded-[28px] md:rounded-full bg-white/45 backdrop-blur-xl border border-white/70 shadow-lg shadow-[#315f4d]/20 overflow-hidden">
+      <div className="w-full flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-2">
         
         {/* 1. LOGO & BRAND "SAIIUT" */}
         <div 
@@ -161,14 +162,14 @@ export const Navbar: React.FC<NavbarProps> = ({
       </div>
 
       {/* Navegación móvil inferior */}
-      <div className="flex md:hidden items-center justify-around gap-1 mt-2 pt-2 border-t border-white/50">
+      <div className="flex md:hidden items-center gap-1.5 px-3 pb-2.5 pt-1.5 border-t border-white/50 overflow-x-auto">
         {navItems.map((item) => {
           const isActive = currentView === item.id;
           return (
             <button
               key={item.id}
               onClick={() => onNavigate(item.id)}
-              className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all ${
+              className={`shrink-0 whitespace-nowrap px-3.5 py-1.5 rounded-full text-[11px] font-bold transition-all ${
                 isActive
                   ? 'bg-white/80 backdrop-blur-md text-[#22304a] shadow-sm border border-white/80'
                   : 'text-[#22304a]/75 hover:bg-[#dff4ff]/60'
@@ -178,6 +179,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           );
         })}
+      </div>
       </div>
     </header>
   );

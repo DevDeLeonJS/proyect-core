@@ -59,7 +59,7 @@ export const RightSidebar: React.FC<RightSidebarProps> = () => {
   const blankDays = Array.from({ length: startOffset }, (_, i) => i);
 
   return (
-    <aside className="fixed top-0 right-0 z-10 w-full lg:w-[325px] xl:w-[345px] h-screen overflow-y-auto bg-gradient-to-b from-[#18513f] via-[#7fae9b] to-[#f5dfc5] p-4 sm:p-5 pt-24 sm:pt-28 flex flex-col gap-5">
+    <aside className="relative lg:fixed top-0 right-0 z-10 w-full lg:w-[325px] xl:w-[345px] lg:h-screen lg:overflow-y-auto bg-gradient-to-b from-[#18513f] via-[#7fae9b] to-[#f5dfc5] p-4 sm:p-5 lg:pt-28 flex flex-col gap-5 rounded-t-[32px] lg:rounded-none mt-6 lg:mt-0">
       
       {/* 1. TARJETA CALENDARIO (Blanca con esquinas redondeadas exactas a la imagen) */}
       <div className="bg-[#d8e4d7]/55 backdrop-blur-xl rounded-[32px] p-5 shadow-xl shadow-[#173d31]/25 ring-1 ring-white/55 flex flex-col justify-between">
