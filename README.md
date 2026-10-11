@@ -97,3 +97,6 @@ Requisitos breves para contribuir:
 2. Haz commits con el prefijo del ticket: `SAIUT-XX: descripción del cambio`.
 3. Abre un Pull Request hacia `main` para revisión.
 4. Verifica antes de push: `npm run lint` y `npm run build` en `frontend/`.
+
+
+
