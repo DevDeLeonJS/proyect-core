@@ -136,7 +136,7 @@ export const GradesView: React.FC = () => {
                   <td className="py-4 px-3 text-center font-extrabold text-[#178568] text-sm">
                     {g.promedioFinal !== null ? g.promedioFinal.toFixed(1) : '-'}
                   </td>
-                  <td className="py-4 px-3 text-right">
+                  <td className="py-4 px-3 text-center">
                     <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#cde8d8] text-[#178568] border border-white/80">
                       {g.estatus}
                     </span>

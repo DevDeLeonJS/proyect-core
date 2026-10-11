@@ -60,3 +60,20 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #77c7d2;
 }
+
+/* Ajustes de encuadre para móviles y pantallas con notch */
+html {
+  min-height: 100%;
+  scroll-padding-top: 10rem;
+}
+body {
+  min-width: 320px;
+  margin: 0;
+  padding-top: env(safe-area-inset-top, 0px);
+}
+#root {
+  min-height: 100vh;
+}
+@media (max-width: 767px) {
+  html { scroll-padding-top: 11rem; }
+}

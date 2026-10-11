@@ -110,7 +110,7 @@ export function App() {
       )}
 
       {/* 2. Área principal de contenido */}
-      <main className={`flex-1 w-full pt-28 ${
+      <main className={`flex-1 w-full pt-40 sm:pt-36 md:pt-32 lg:pt-28 ${
         currentView === 'dashboard' ? 'lg:pr-[325px] xl:pr-[345px]' : ''
       }`}>
         {renderCurrentView()}
