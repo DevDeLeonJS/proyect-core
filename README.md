@@ -1,67 +1,34 @@
 # SAIUT
 
-Sistema académico integral para la gestión de la experiencia estudiantil: login y
-registro de usuarios, dashboard con resumen general, clases, actividades,
-calificaciones y pagos.
-
-El repositorio está organizado como un monorepo con dos proyectos:
-
-| Carpeta     | Descripción                                  | Más detalles                            |
-| ----------- | -------------------------------------------- | --------------------------------------- |
-| `frontend/` | SPA de interfaces (wireframes de SAIUT)     | [frontend/README.md](frontend/README.md) |
-| `backend/`  | API HTTP base del sistema                    | [backend/README.md](backend/README.md)   |
-
-## Tecnologías
-
-### Frontend
-
-- [React](https://react.dev) 19 + [TypeScript](https://www.typescriptlang.org)
-- [Vite](https://vite.dev) 8 como bundler y servidor de desarrollo
-- [Tailwind CSS](https://tailwindcss.com) 4 para estilos
-- [lucide-react](https://lucide.dev) para iconos
-- [ESLint](https://eslint.org) para linting
-
-### Backend
-
-- [Node.js](https://nodejs.org) + [Express](https://expressjs.com) 5
-- [cors](https://www.npmjs.com/package/cors) para compartir recursos
-- [dotenv](https://www.npmjs.com/package/dotenv) para variables de entorno
-- [nodemon](https://nodemon.io) para recarga automática en desarrollo
-
-## Requisitos previos
-
-- [Node.js](https://nodejs.org) (versión LTS)
-- npm (incluido con Node.js)
-- [Git](https://git-scm.com)
-
-## Cómo levantar el proyecto
-
-### 1. Backend
+## Desarrollo
 
 ```bash
-cd backend
-npm install
-cp .env.example .env
-npm run dev
-```
-
-El servidor queda corriendo en `http://localhost:3000` (puerto configurable con
-`PORT` en `backend/.env`).
-
-### 2. Frontend
-
-```bash
-cd frontend
 npm install
 npm run dev
 ```
 
-Para conectar el frontend con la API, define la URL en `frontend/.env.local`:
+## Validación
+
+```bash
+npm run lint
+npm run build
+```
+
+## Integración con backend
+
+El frontend mantiene los datos simulados en `src/data/mockData.ts` hasta que se
+defina el stack del backend. La capa `src/services/apiClient.ts` centraliza las
+solicitudes HTTP sin acoplar el proyecto a un framework, ORM o proveedor de base
+de datos.
+
+Configura la URL del backend con un archivo `.env.local`:
 
 ```env
 VITE_API_URL=http://localhost:3000/api
 ```
 
+Cuando se definan los endpoints, cada dominio puede crear servicios pequeños que
+usen `request<T>()` y los contratos de `src/types`.
 ## Scripts disponibles
 
 ### Frontend (`cd frontend`)
@@ -97,3 +64,6 @@ Requisitos breves para contribuir:
 2. Haz commits con el prefijo del ticket: `SAIUT-XX: descripción del cambio`.
 3. Abre un Pull Request hacia `main` para revisión.
 4. Verifica antes de push: `npm run lint` y `npm run build` en `frontend/`.
+
+
+
