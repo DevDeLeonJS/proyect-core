@@ -1,0 +1,300 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ================================
+// ENUMS
+// ================================
+
+enum RolUsuario {
+  alumno
+  profesor
+  administrador
+}
+
+enum EstatusAlumno {
+  regular
+  condicionado
+  baja_temporal
+}
+
+enum DiaSemana {
+  lunes
+  martes
+  miercoles
+  jueves
+  viernes
+  sabado
+}
+
+enum EstadoEntrega {
+  entregada
+  calificada
+}
+
+enum CategoriaAviso {
+  academico
+  general
+  urgente
+  evento
+}
+
+enum TipoEvento {
+  tarea
+  clase
+  examen
+  aviso
+}
+
+enum EstadoCargo {
+  pendiente
+  proximo
+  pagado
+}
+
+enum MetodoPago {
+  card
+  spei
+  oxxo
+}
+
+enum EstadoPago {
+  iniciado
+  aprobado
+  rechazado
+}
+
+// ================================
+// MODELOS
+// ================================
+
+model Usuario {
+  id            Int        @id @default(autoincrement())
+  nombre        String     @db.VarChar(150)
+  correo        String     @db.VarChar(150)
+  matricula     String     @db.VarChar(20)
+  username      String     @db.VarChar(60)
+  password_hash String     @db.VarChar(255)
+  rol           RolUsuario
+  avatar_url    String?    @db.VarChar(255)
+  activo        Boolean
+  created_at    DateTime
+
+  @@map("usuarios")
+}
+
+model Sesion {
+  id            Int      @id @default(autoincrement())
+  usuario_id    Int
+  refresh_token String   @db.VarChar(255)
+  expira_en     DateTime
+  revocada      Boolean
+  created_at    DateTime
+
+  @@map("sesiones")
+}
+
+model Carrera {
+  id     Int    @id @default(autoincrement())
+  nombre String @db.VarChar(150)
+
+  @@map("carreras")
+}
+
+model Grupo {
+  id           Int    @id @default(autoincrement())
+  carrera_id   Int
+  codigo       String @db.VarChar(10)
+  cuatrimestre Int    @db.SmallInt
+
+  @@map("grupos")
+}
+
+model Alumno {
+  id         Int           @id @default(autoincrement())
+  usuario_id Int
+  carrera_id Int
+  grupo_id   Int
+  estatus    EstatusAlumno
+
+  @@map("alumnos")
+}
+
+model Profesor {
+  id         Int    @id @default(autoincrement())
+  usuario_id Int
+  nombre     String @db.VarChar(150)
+
+  @@map("profesores")
+}
+
+model Ciclo {
+  id            Int      @id @default(autoincrement())
+  nombre        String   @db.VarChar(60)
+  fecha_inicio  DateTime @db.Date
+  fecha_fin     DateTime @db.Date
+  total_semanas Int      @db.SmallInt
+  activo        Boolean
+
+  @@map("ciclos")
+}
+
+model Materia {
+  id          Int    @id @default(autoincrement())
+  codigo      String @db.VarChar(15)
+  nombre      String @db.VarChar(120)
+  creditos    Int    @db.SmallInt
+  color_tema  String @db.VarChar(7)
+  color_fondo String @db.VarChar(7)
+
+  @@map("materias")
+}
+
+model Clase {
+  id          Int    @id @default(autoincrement())
+  materia_id  Int
+  profesor_id Int
+  grupo_id    Int
+  ciclo_id    Int
+  aula        String @db.VarChar(80)
+
+  @@map("clases")
+}
+
+model HorarioClase {
+  id          Int       @id @default(autoincrement())
+  clase_id    Int
+  dia         DiaSemana
+  hora_inicio DateTime  @db.Time
+  hora_fin    DateTime  @db.Time
+
+  @@map("horarios_clase")
+}
+
+model Inscripcion {
+  id        Int @id @default(autoincrement())
+  alumno_id Int
+  clase_id  Int
+
+  @@map("inscripciones")
+}
+
+model Actividad {
+  id             Int      @id @default(autoincrement())
+  clase_id       Int
+  titulo         String   @db.VarChar(200)
+  descripcion    String   @db.Text
+  fecha_limite   DateTime
+  puntos_maximos Int      @db.SmallInt
+  created_at     DateTime
+
+  @@map("actividades")
+}
+
+model Entrega {
+  id            Int           @id @default(autoincrement())
+  actividad_id  Int
+  alumno_id     Int
+  archivo_url   String?       @db.VarChar(255)
+  comentario    String?       @db.Text
+  fecha_entrega DateTime
+  estado        EstadoEntrega
+
+  @@map("entregas")
+}
+
+model Calificacion {
+  id             Int      @id @default(autoincrement())
+  inscripcion_id Int
+  parcial        Int      @db.SmallInt
+  calificacion   Decimal  @db.Decimal(4, 2)
+  registrada_en  DateTime
+
+  @@map("calificaciones")
+}
+
+model Aviso {
+  id                Int            @id @default(autoincrement())
+  grupo_id          Int
+  titulo            String         @db.VarChar(200)
+  descripcion       String         @db.Text
+  remitente         String         @db.VarChar(100)
+  categoria         CategoriaAviso
+  fijado            Boolean
+  activo            Boolean
+  fecha_publicacion DateTime
+
+  @@map("avisos")
+}
+
+model EventoCalendario {
+  id           Int        @id @default(autoincrement())
+  clase_id     Int
+  actividad_id Int
+  grupo_id     Int
+  titulo       String     @db.VarChar(200)
+  fecha        DateTime   @db.Date
+  hora         DateTime   @db.Time
+  tipo         TipoEvento
+
+  @@map("eventos_calendario")
+}
+
+model Notificacion {
+  id         Int      @id @default(autoincrement())
+  usuario_id Int
+  titulo     String   @db.VarChar(150)
+  mensaje    String   @db.Text
+  leida      Boolean
+  created_at DateTime
+
+  @@map("notificaciones")
+}
+
+model ConceptoPago {
+  id           Int      @id @default(autoincrement())
+  ciclo_id     Int
+  concepto     String   @db.VarChar(150)
+  periodo      String   @db.VarChar(40)
+  monto        Decimal  @db.Decimal(10, 2)
+  fecha_limite DateTime @db.Date
+
+  @@map("conceptos_pago")
+}
+
+model Cargo {
+  id             Int         @id @default(autoincrement())
+  alumno_id      Int
+  concepto_id    Int
+  monto_original Decimal     @db.Decimal(10, 2)
+  descuento_beca Decimal     @db.Decimal(10, 2)
+  monto_final    Decimal     @db.Decimal(10, 2)
+  fecha_limite   DateTime    @db.Date
+  estado         EstadoCargo
+
+  @@map("cargos")
+}
+
+model Pago {
+  id                  Int        @id @default(autoincrement())
+  cargo_id            Int
+  metodo              MetodoPago
+  estado              EstadoPago
+  referencia_pasarela String?    @db.VarChar(100)
+  monto               Decimal    @db.Decimal(10, 2)
+  folio_comprobante   String?    @db.VarChar(30)
+  comprobante_url     String?    @db.VarChar(255)
+  fecha_pago          DateTime
+
+  @@map("pagos")
+}
